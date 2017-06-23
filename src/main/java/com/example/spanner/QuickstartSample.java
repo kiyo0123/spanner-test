@@ -58,8 +58,11 @@ public class QuickstartSample {
       System.out.println("--- " + new Long(TimeUnit.NANOSECONDS.toMillis(tp4-tp3)).toString() + " millisec");
 
       long tp5 = System.nanoTime();
+      ResultSet resultSet = null;
       // Queries the database
-      ResultSet resultSet = dbClient.singleUse().executeQuery(Statement.of("SELECT 1"));
+      for (int i=0;i<100;i++) {
+        resultSet = dbClient.singleUse().executeQuery(Statement.of("SELECT 1"));
+      }
       long tp6 = System.nanoTime();
       System.out.println("--- " + new Long(TimeUnit.NANOSECONDS.toMillis(tp6-tp5)).toString() + " millisec");
 
